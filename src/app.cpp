@@ -1,6 +1,7 @@
 #include "app.h"
 #include "sensor.h"
 #include "oled.h"
+#include "relay.h"
 
 float temperature=0;
 float humidity=0;
@@ -13,5 +14,7 @@ void runApp() {
         Serial.println("Error al leer del sensor DHT!");
     }
     mostrarDatos(temperature, humidity);   // Show measure in display OLED
-    delay(2000);                          // Wait 2 seconds to update
+    controlRelay(temperature, humidity);   // Control the relay
+    mostrarEstado();                       // Show relay state
+    delay(2000);                           // Wait 2 seconds to update
 }

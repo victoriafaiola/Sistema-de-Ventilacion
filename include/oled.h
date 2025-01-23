@@ -9,6 +9,6 @@
 
 void initDisplay();
 void oled88_bienvenida(void);
-void mostrarDatos(float temperatura, float humedad);
+void mostrarDatos(float temperature, float humidity);
 
 #endif

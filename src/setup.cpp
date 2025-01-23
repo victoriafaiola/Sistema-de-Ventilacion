@@ -2,6 +2,7 @@
 #include "setup.h"
 #include "sensor.h"
 #include "oled.h"
+#include "relay.h"
 
 // System settings
 void setupSystem() {
@@ -9,5 +10,5 @@ void setupSystem() {
     initSensor();           // Inicialize DHT11
     initDisplay();          // Inicialize display OLED
     oled88_bienvenida();
-    
+    initRelay();            // Inicialize relay       
 }
