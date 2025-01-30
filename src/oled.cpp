@@ -16,7 +16,7 @@ void initDisplay() {
   //u8g2.setFlipMode(1);        //--  rotate screen 180 degrees
 }
 
-void oled88_bienvenida(void){
+void oled88_welcome(void){
   u8g2.setMaxClipWindow();
   u8g2.setFont(u8g2_font_spleen6x12_mf);
   u8g2.setCursor(10,35);
@@ -26,7 +26,7 @@ void oled88_bienvenida(void){
   delay(5000);
 }
 
-void mostrarDatos(float temperature, float humidity) {
+void showData(float temperature, float humidity) {
     u8g2.clearBuffer();
     u8g2.sendBuffer();
     u8g2.setFont(u8g2_font_spleen6x12_mf);
