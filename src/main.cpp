@@ -9,5 +9,5 @@ void setup() {
 
 // Principal function
 void loop() {
-    runApp(); 
+    runApp();
 }

@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-//Relay pin 
+//Relay pin
 #define RELAY_PIN         13
 
 // Inicilize relay
@@ -11,6 +11,6 @@ void initRelay();
 
 // Control functions
 void controlRelay(float temperature, float humidity);
-bool mostrarEstado();
+bool showState();
 
 #endif

@@ -8,7 +8,7 @@
 #define U8LOG_HEIGHT    8
 
 void initDisplay();
-void oled88_bienvenida(void);
-void mostrarDatos(float temperature, float humidity);
+void oled88_welcome(void);
+void showData(float temperature, float humidity);
 
 #endif

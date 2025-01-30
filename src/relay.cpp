@@ -8,6 +8,7 @@ void initRelay() {
     digitalWrite(RELAY_PIN, LOW); // Relay off in the beggining
 }
 
+
 // Conditional state
 void controlRelay(float temperature, float humidity) {
     if (temperature > 25.0 || humidity > 60.0) {
@@ -17,7 +18,8 @@ void controlRelay(float temperature, float humidity) {
     }
 }
 
+
 // Show relay state
-bool mostrarEstado() {
+bool showState() {
     return digitalRead(RELAY_PIN) == HIGH;  // True if relay on, false if relay off
 }

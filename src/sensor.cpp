@@ -8,7 +8,6 @@
 
 DHT dht(DHT_PIN, DHT_TYPE);
 
-
 // Inicialize DHT11
 void initSensor() {
     dht.begin();
@@ -16,10 +15,10 @@ void initSensor() {
 
 // Read temperature
 float readTemperature() {
-    return dht.readTemperature(); 
+    return dht.readTemperature();
 }
 
 // Read humidity
 float readHumidity() {
-    return dht.readHumidity(); 
+    return dht.readHumidity();
 }
