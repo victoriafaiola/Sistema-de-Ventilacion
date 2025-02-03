@@ -4,4 +4,7 @@
 // Principal function
 void runApp();
 
+//--Prototypes
+void App_loop(void);
+
 #endif 

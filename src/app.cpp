@@ -2,11 +2,7 @@
 #include "sensor.h"
 #include "oled.h"
 #include "relay.h"
-#include "functions.h"
-#include "persist.h"
 #include "wificonnection.h"
-#include "publish.h"
-#include "mqtt.h"
 
 
 float temperature=0;
@@ -24,10 +20,12 @@ void runApp() {
     controlRelay(temperature, humidity);   // Control the relay
     showState();                           // Show relay state
     delay(2000);                           // Wait 2 seconds to update
-    handleWiFiConnection();                // wifi connection
-    publishTemperature(temperature);
-    publishHumidity(humidity);
-    publishRelayState(showState);
+}
 
+//--Local variables
+bool wifi_state;
 
+//--Main application
+void App_loop(void){
+    wifi_state=wifi_loop();
 }

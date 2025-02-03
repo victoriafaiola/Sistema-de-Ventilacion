@@ -11,3 +11,11 @@ void setup() {
 void loop() {
     runApp();
 }
+
+void setup(){
+  App_setup();
+}
+
+void loop(){
+  App_loop();
+}

@@ -4,4 +4,7 @@
 // Inicialize system
 void setupSystem();
 
+//--Prototypes
+void App_setup(void);
+
 #endif

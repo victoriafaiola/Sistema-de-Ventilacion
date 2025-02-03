@@ -10,13 +10,16 @@ const int OLED_RESET_PIN = -1; // Reset OLED, -1 if is not necesary
 // DHT settings
 #define DHT_TYPE DHT11          // Sensor type
 
+//--Software constants
+#define SERIAL_BAUDRATE             19200
+
 //--Structures
 struct Config {
-  String ssid;
-  String ssid_pass;
-  uint8_t irr_hour;
-  uint8_t irr_minute;
-  uint8_t irr_time;
+  const char* device;
+  const char* ssid;
+  const char* ssid_pass;
+  const char* ap_ssid;
+  const char* ap_pass;
 };
 
 #endif
