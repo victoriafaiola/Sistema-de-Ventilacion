@@ -2,7 +2,7 @@
 #include <WiFi.h>
 
 
-#define MQTT_SERVER "192.168.56.1"
+#define MQTT_SERVER "192.168.1.5"
 #define MQTT_PORT 1883
 #define MQTT_USER "smartvent"
 #define MQTT_PASSWORD "smartvent"
@@ -11,6 +11,8 @@
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
+String topic_rpc_req;
+String msg_rpc_req;
 
 void setupMQTT() {
     mqttClient.setServer(MQTT_SERVER, MQTT_PORT);
@@ -33,5 +35,10 @@ void reconnectMQTT() {
 
 
 void mqttCallback(char* topic, byte* payload, unsigned int length) {
-    // Handle incoming MQTT messages here
+    payload[length] = '\0';
+    topic_rpc_req = String((char*)topic);
+    msg_rpc_req = String((char*)payload);
+    //--Debug de mensaje de entrada
+    Serial.print("[DEBUG RPC] Topico de pregunta:");Serial.println(topic_rpc_req);
+    Serial.print("[DEBUG RPC] Mensaje de pregunta:");Serial.println(msg_rpc_req);
 }
