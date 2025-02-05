@@ -3,7 +3,8 @@
 #include "oled.h"
 #include "relay.h"
 #include "wificonnection.h"
-
+#include "publish.h"
+#include "mqtt.h"
 
 float temperature=0;
 float humidity=0;
@@ -20,6 +21,9 @@ void runApp() {
     controlRelay(temperature, humidity);   // Control the relay
     showState();                           // Show relay state
     delay(2000);                           // Wait 2 seconds to update
+    publishTemperature(temperature);
+    publishHumidity(humidity);
+    publishRelayState(showState());
 }
 
 //--Local variables

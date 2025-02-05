@@ -4,6 +4,8 @@
 #include "oled.h"
 #include "relay.h"
 #include "wificonnection.h"
+#include "publish.h"
+#include "mqtt.h"
 
 // System settings
 void setupSystem() {
@@ -11,12 +13,14 @@ void setupSystem() {
     initSensor();           // Inicialize DHT11
     initDisplay();          // Inicialize display OLED
     oled88_welcome();
-    initRelay();            // Inicialize relay   
+    initRelay();            // Inicialize relay 
+    setupMQTT();            // Inicialize mqtt  
 }
 
 //--Local variables
 uint8_t var_count;
 Config config;
+
 
 //--Startup function
 void App_setup(void){
