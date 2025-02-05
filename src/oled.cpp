@@ -11,6 +11,7 @@ U8X8LOG u8x8log;
 
 
 void initDisplay() {
+  Serial.println("Init display oled");
   Wire.begin(SDA_PIN,SCL_PIN);
   u8g2.begin();
   u8x8log.begin(U8LOG_WIDTH, U8LOG_HEIGHT, u8log_buffer);

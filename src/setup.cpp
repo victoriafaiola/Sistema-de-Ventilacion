@@ -10,6 +10,7 @@ Config config;
 // System settings
 void setupSystem() {
     Serial.begin(19200);    // Inicialize comunication
+    Serial.println("Start");
     initSensor();           // Inicialize DHT11
     initDisplay();          // Inicialize display OLED
     oled88_welcome();

@@ -19,8 +19,11 @@ void setupMQTT() {
 
 
 void reconnectMQTT() {
+    
     while (!mqttClient.connected()) {
+        Serial.println("Try to connect to MQTT server");
         if (mqttClient.connect("smartvent", MQTT_USER, MQTT_PASSWORD)) {
+            Serial.println("Connected to MQTT server!");
             mqttClient.subscribe("smartvent/commands");
         } else {
             delay(5000);
