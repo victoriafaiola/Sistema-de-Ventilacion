@@ -6,6 +6,8 @@
 #include "publish.h"
 #include "mqtt.h"
 
+//--Local variables
+bool wifi_state;
 float temperature=0;
 float humidity=0;
 
@@ -19,17 +21,10 @@ void runApp() {
     }
     showData(temperature, humidity);   // Show measure in display OLED
     controlRelay(temperature, humidity);   // Control the relay
-    showState();                           // Show relay state
+    //showState();                           // Show relay state
     delay(2000);                           // Wait 2 seconds to update
     publishTemperature(temperature);
     publishHumidity(humidity);
     publishRelayState(showState());
-}
-
-//--Local variables
-bool wifi_state;
-
-//--Main application
-void App_loop(void){
     wifi_state=wifi_loop();
 }

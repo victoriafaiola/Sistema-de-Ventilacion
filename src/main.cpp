@@ -5,11 +5,9 @@
 // Settings
 void setup() {
     setupSystem();
-    App_setup();
 }
 
 // Principal function
 void loop() {
     runApp();
-    App_loop();
 }

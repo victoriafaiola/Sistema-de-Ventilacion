@@ -1,10 +1,16 @@
 #ifndef SETUP_H
 #define SETUP_H
 
-// Inicialize system
-void setupSystem();
+#include <Arduino.h>
+#include "sensor.h"
+#include "oled.h"
+#include "relay.h"
+#include "wificonnection.h"
+#include "publish.h"
+#include "mqtt.h"
 
 //--Prototypes
-void App_setup(void);
+// Inicialize system
+void setupSystem();
 
 #endif

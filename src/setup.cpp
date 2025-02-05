@@ -1,11 +1,11 @@
-#include <Arduino.h>
+
 #include "setup.h"
-#include "sensor.h"
-#include "oled.h"
-#include "relay.h"
-#include "wificonnection.h"
-#include "publish.h"
-#include "mqtt.h"
+
+
+
+//--Local variables
+uint8_t var_count;
+Config config;
 
 // System settings
 void setupSystem() {
@@ -15,15 +15,7 @@ void setupSystem() {
     oled88_welcome();
     initRelay();            // Inicialize relay 
     setupMQTT();            // Inicialize mqtt  
-}
 
-//--Local variables
-uint8_t var_count;
-Config config;
-
-
-//--Startup function
-void App_setup(void){
     Serial.begin(SERIAL_BAUDRATE);
 
     //--Init wifi
@@ -32,8 +24,14 @@ void App_setup(void){
     config.ap_ssid=config.device;
     config.ap_pass="12345678";
     wifi_init(WIFI_AP_STA);
+    reconnectMQTT();
+    
+
 
     //--Presentation
     Serial.println("\r\nCátedra de Electrónica II UTN-FRRO");
     Serial.println("Connection and maintain WiFi network");
 }
+
+
+

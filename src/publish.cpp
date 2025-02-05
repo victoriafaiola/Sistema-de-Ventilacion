@@ -3,9 +3,14 @@
 
 void publishTemperature(float temperature) {
     String payload = String(temperature);
-    mqttClient.publish("smartvent/temperature", payload.c_str());
+    //bool publish_state=0;
+    //publish_state=mqttClient.publish("smartvent/temperature", payload.c_str());
+    if (mqttClient.publish("smartvent/temperature", payload.c_str())){
+        Serial.println("Publish successfull");
+    }else{
+        Serial.println("Publish not successfull");
+    }
 }
-
 
 void publishHumidity(float humidity) {
     String payload = String(humidity);
