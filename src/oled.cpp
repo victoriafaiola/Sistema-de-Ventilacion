@@ -1,4 +1,5 @@
 #include "oled.h"
+#include "relay.h"
 #include <U8g2lib.h>
 #include <Wire.h>
 
@@ -50,6 +51,14 @@ void showData(float temperature, float humidity) {
     u8g2.print(humidity);
     u8g2.print(" %");
 
+    // Show relay state
+    u8g2.setCursor(3, 60);
+    u8g2.print("Fan: ");
+    if (showState()) {
+        u8g2.print("ON");
+    } else {
+        u8g2.print("OFF");
+    }
 
     u8g2.sendBuffer();
 }
