@@ -8,6 +8,8 @@
 #include "wificonnection.h"
 #include "publish.h"
 #include "mqtt.h"
+#include "commands.h"
+#include "storage.h"
 
 //--Prototypes
 // Inicialize system
