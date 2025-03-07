@@ -12,7 +12,7 @@ SmartVent ESP32 es un sistema de ventilación inteligente basado en la implement
 - **Interfaz gráfica:** Dashboard en Node-RED
 
 ## Circuito
-### Diagrama del circuito:
+### Esquemático:
 ![Diagrama del circuito](images/Circuit.png)
 
 ### Conexiones:
