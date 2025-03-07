@@ -11,8 +11,7 @@ SmartVent ESP32 es un sistema de ventilación inteligente basado en la implement
 - **Conectividad:** Conexión wifi y comunicación MQTT con broker Mosquitto
 - **Interfaz gráfica:** Dashboard en Node-RED
 
-## Circuito
-### Esquemáticos:
+## Esquemáticos:
 ![Diagrama del circuito](images/Circuit.png)
 ![Diagrama del circuito](images/Schematic.png)
 
@@ -28,18 +27,18 @@ SmartVent ESP32 es un sistema de ventilación inteligente basado en la implement
 
 ## Código
 
-### Sensor
+### sensor
 - **initSensor()**: Inicializa el sensor DHT11.
 - **readTemperature()**: Retorna la temperatura medida por el DHT11 en grados Celsius.
 - **readHumidity()**: Retorna el valor de humedad relativa medida por el sensor.
 
-### Relay
+### relay
 - **initRelay()**: Configura el pin del relé como salida con `pinMode(RELAY_PIN, OUTPUT);`. Inicializa el relé apagado con `digitalWrite(RELAY_PIN, LOW);`.
 - **controlRelay(float temperature, float humidity)**: Enciende el relé (`digitalWrite(RELAY_PIN, HIGH);`) si la temperatura es mayor a 25°C o si la humedad es mayor al 60%. Apaga el relé (`digitalWrite(RELAY_PIN, LOW);`) si ambas condiciones son menores a esos umbrales.
 - **showState()**:
 Retorna `true` si el relé está encendido (es decir, si el pin está en alto), y `false` si está apagado (pin en bajo).
 
-### OLED
+### oled
 - **initDisplay()**:
    - Inicializa la comunicación I2C con `Wire.begin(SDA_PIN, SCL_PIN);`.
    - Configura y empieza el display con `u8g2.begin();`.
@@ -47,12 +46,12 @@ Retorna `true` si el relé está encendido (es decir, si el pin está en alto), 
    - Configura el modo de actualización del log.
 - **oled88_welcome()**: Muestra un mensaje de bienvenida en el display, con el texto "SmartVent". Establece el tipo de fuente y la posición del texto en la pantalla. Utiliza `u8g2.sendBuffer()` para enviar los datos a la pantalla después de dibujar.
 - **showData(float temperature, float humidity)**:
-- Borra la pantalla actual con `u8g2.clearBuffer();`.
-- Muestra la temperatura, humedad y el estado del ventilador (relé) en posiciones específicas de la pantalla.
-- Muestra "ON" si el relé está encendido o "OFF" si está apagado, utilizando la función `showState()` del archivo `relay.h`.
-- Actualiza la pantalla con los datos mediante `u8g2.sendBuffer();`.
+   - Borra la pantalla actual con `u8g2.clearBuffer();`.
+   - Muestra la temperatura, humedad y el estado del ventilador (relé) en posiciones específicas de la pantalla.
+   - Muestra "ON" si el relé está encendido o "OFF" si está apagado, utilizando la función `showState()` del archivo `relay.h`.
+   - Actualiza la pantalla con los datos mediante `u8g2.sendBuffer();`.
 
-### Wi-Fi
+### wificonnection
 - **wifi_init():** Inicializa la conexión Wi-Fi en el modo especificado (`WIFI_AP_STA`, `WIFI_AP`, `WIFI_STA`).
 - **wifi_loop():** Mantiene la conexión Wi-Fi utilizando una máquina de estados: `CONNECTED`, `RECONNECT`, `DISCONNECTED`, `WAITTORECONNECT`, `WAITFORCONNECT`. Devuelve `true` si la conexión está activa, `false` si no.
 
@@ -62,15 +61,15 @@ Este código permite almacenar y recuperar datos de configuración (SSID, contra
 - **getPassword():** Retorna la contraseña guardada.
 - **getBrokerIP():** Retorna la dirección IP del broker MQTT.
 
-### Commands:
+### Commands
 - **checkSerialCommands:** Extrae el nuevo SSID, contraseña e IP del broker de la cadena y lo guarda en el objeto Storage.
 
 ### MQTT
-- **setupMQTT()**: Configura el cliente MQTT con el servidor y puerto definidos. Establece el callback para manejar los mensajes entrantes (`mqttCallback`).
-- **reconnectMQTT()**: Intenta conectar al broker MQTT en un bucle:
+- **setupMQTT():** Configura el cliente MQTT con el servidor y puerto definidos. Establece el callback para manejar los mensajes entrantes (`mqttCallback`).
+- **reconnectMQTT():** Intenta conectar al broker MQTT en un bucle:
    - Si la conexión es exitosa, imprime un mensaje de éxito y se suscribe al tópico "smartvent/commands".
    - Si no se puede conectar, espera 5 segundos y lo intenta de nuevo.
-- **mqttCallback(char* topic, byte* payload, unsigned int length)**: Esta función es llamada cuando el cliente MQTT recibe un mensaje en un tópico. Convierte el tópico y el mensaje (payload) en cadenas de texto (`String`). Imprime los datos del tópico y el mensaje recibido en la consola para depuración.
+- **mqttCallback(char* topic, byte* payload, unsigned int length):** Esta función es llamada cuando el cliente MQTT recibe un mensaje en un tópico. Convierte el tópico y el mensaje (payload) en cadenas de texto (`String`). Imprime los datos del tópico y el mensaje recibido en la consola para depuración.
 
 ### Publish
 - **publishTemperature(float temperature)**: Convierte el valor de temperatura a un `String`. Publica el valor en el tópico MQTT "smartvent/temperature". Imprime en la consola si la publicación fue exitosa o no.
@@ -85,7 +84,6 @@ Este código permite almacenar y recuperar datos de configuración (SSID, contra
 - **initRelay()**: Inicializa el relé que controla el ventilador.
 - **setupMQTT()**: Inicializa la conexión MQTT.
 - **storage.begin()**: Inicia el acceso a la memoria persistente.
-- Asigna valores por defecto a la configuración de la red.
 - **wifi_init(WIFI_AP_STA)**: Configura el ESP32 para operar en modo estación y punto de acceso simultáneamente.
 - **connectMQTT()**: Conecta al broker MQTT.
 
